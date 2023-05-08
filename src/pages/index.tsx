@@ -1,10 +1,13 @@
-import { signIn, signOut, useSession } from "next-auth/react"
+import useAuth from "~/hooks/useAuth"
+import useSessionUser from "~/hooks/useSessionUser"
 
 export default function Home() {
-  const { data: session } = useSession()
+  const { session, userName } = useSessionUser();
+  const { signIn, signOut } = useAuth();
+
   if(session) {
     return <>
-      Signed in as {session.user?.email} <br/>
+      Signed in as {userName} <br/>
       <button onClick={() => signOut()}>Sign out</button>
     </>
   }
