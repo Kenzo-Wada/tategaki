@@ -1,22 +1,12 @@
-import useAuth from '~/hooks/useAuth';
-import useSessionUser from '~/hooks/useSessionUser';
+import type { NextPage } from 'next';
+import { memo } from 'react';
 
-export default function Home() {
-  const { session, userName } = useSessionUser();
-  const { signIn, signOut } = useAuth();
+import HomePage from '~/components/Home';
 
-  if (session) {
-    return (
-      <>
-        Signed in as {userName} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    );
-  }
-  return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
-  );
-}
+const Home: NextPage = memo(() => {
+  return <HomePage />;
+});
+
+Home.displayName = 'Home';
+
+export default Home;

@@ -1,7 +1,9 @@
 import { memo } from 'react';
 
+import UserDetailForm from '~/components/SignIn/CreateAccount/UserDetailForm';
+
 const CreateAccountPageComponent = memo(() => {
-  return <div>test</div>;
+  return <UserDetailForm />;
 });
 
 CreateAccountPageComponent.displayName = 'CreateAccountPageComponent';

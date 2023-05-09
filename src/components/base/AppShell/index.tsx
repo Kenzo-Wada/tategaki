@@ -10,7 +10,7 @@ interface Props {
 
 const BaseAppShell = memo((props: Props) => {
   return (
-    <AppShell padding="md" header={<BaseHeader />}>
+    <AppShell padding="xl" header={<BaseHeader />}>
       {props.children}
     </AppShell>
   );
