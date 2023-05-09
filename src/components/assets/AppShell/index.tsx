@@ -5,10 +5,7 @@ import { memo } from 'react';
 type AppShellProps = MantineAppShellProps;
 
 const Appshell = memo((props: AppShellProps) => {
-
-  return (
-    <MantineAppshell {...props}/>
-  );
+  return <MantineAppshell {...props} />;
 });
 
 Appshell.displayName = 'Appshell';

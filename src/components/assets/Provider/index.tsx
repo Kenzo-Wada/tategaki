@@ -1,12 +1,10 @@
-import { MantineProvider } from "@mantine/core";
-import type { MantineProviderProps } from "@mantine/core";
+import { MantineProvider } from '@mantine/core';
+import type { MantineProviderProps } from '@mantine/core';
 
 type ProviderProps = MantineProviderProps;
 
 const Provider = (props: ProviderProps) => {
-  return (
-    <MantineProvider {...props}/>
-  );
+  return <MantineProvider {...props} />;
 };
 
 Provider.displayName = 'Provider';

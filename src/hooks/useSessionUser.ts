@@ -1,11 +1,11 @@
-import type { Session } from "next-auth"
-import { useSession } from "next-auth/react"
+import type { Session } from 'next-auth';
+import { useSession } from 'next-auth/react';
 
 interface HooksType {
-  session: Session | null
-  userName: string | null
-  userEmail: string | null
-  userImage: string | null
+  session: Session | null;
+  userName: string | null;
+  userEmail: string | null;
+  userImage: string | null;
 }
 
 const useSessionUser = (): HooksType => {
@@ -19,4 +19,4 @@ const useSessionUser = (): HooksType => {
   };
 };
 
-export default useSessionUser
+export default useSessionUser;

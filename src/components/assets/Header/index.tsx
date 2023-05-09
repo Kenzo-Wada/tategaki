@@ -5,9 +5,7 @@ import { memo } from 'react';
 type HeaderProps = MantineHeaderProps;
 
 const Header = memo((props: HeaderProps) => {
-  return (
-    <MantineHeader {...props}/>
-  );
+  return <MantineHeader {...props} />;
 });
 
 Header.displayName = 'Header';

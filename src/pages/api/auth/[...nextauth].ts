@@ -1,38 +1,14 @@
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import {PrismaClient} from '@prisma/client'
-import NextAuth from 'next-auth'
-// import CredentialsProvider from "next-auth/providers/credentials"
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { PrismaClient } from '@prisma/client';
+import NextAuth from 'next-auth';
+import type { Account, Profile, User } from 'next-auth';
+import type { AdapterUser } from 'next-auth/adapters';
 import GoogleProvider from 'next-auth/providers/google';
 
-const prisma = new PrismaClient;
+const prisma = new PrismaClient();
 
 export default NextAuth({
   providers: [
-    // CredentialsProvider({
-    //   // name: "",
-    //   credentials: {
-    //     username: { label: "ユーザー名", type: "text", placeholder: "ユーザー名" },
-    //     password: {  label: "パスワード", type: "password" }
-    //   },
-    //   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    //   async authorize(credentials, req) {
-    //     const username = credentials?.username
-    //     const password = credentials?.password
-
-    //     // データベースからユーザー情報を取得
-    //     const user = await prisma.user.findUnique({
-    //       where: { username: username },
-    //     })
-
-    //     if (user && user.password === password) {
-    //       // パスワードが一致した場合、ユーザーオブジェクトを返す
-    //       return { id: user.id, name: user.name, email: user.email }
-    //     } else {
-    //       // 一致しない場合、NULLを返す
-    //       return null
-    //     }
-    //   }
-    // }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
@@ -40,4 +16,24 @@ export default NextAuth({
   ],
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
-})
+  callbacks: {
+    signIn: async (params: {
+      user: AdapterUser | User;
+      account: Account | null;
+      profile?: Profile;
+    }): Promise<string | boolean> => {
+      // ユーザーがデータベースに存在するか確認
+      const existingUser = await prisma.user.findUnique({
+        where: { email: params.user.email ?? undefined },
+      });
+
+      // ユーザーが存在しない場合、新規アカウント作成ページにリダイレクト
+      if (!existingUser) {
+        return '/sign-in/create-account' || '';
+      }
+
+      // ユーザーが存在する場合、サインインを許可
+      return true;
+    },
+  },
+});

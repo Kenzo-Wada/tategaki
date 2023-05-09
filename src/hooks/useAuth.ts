@@ -1,5 +1,5 @@
-import { signIn as NextAuthSignIn, signOut as NextAuthSignOut } from "next-auth/react";
-import { useCallback } from "react";
+import { signIn as NextAuthSignIn, signOut as NextAuthSignOut } from 'next-auth/react';
+import { useCallback } from 'react';
 
 interface HooksType {
   signIn: () => void;
@@ -9,15 +9,15 @@ interface HooksType {
 const useAuth = (): HooksType => {
   const signIn = useCallback(() => {
     NextAuthSignIn();
-  },[]);
+  }, []);
 
   const signOut = useCallback(() => {
     NextAuthSignOut();
-  },[]);
+  }, []);
 
   return {
     signIn,
-    signOut
+    signOut,
   };
 };
 
