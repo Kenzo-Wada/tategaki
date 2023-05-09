@@ -1,7 +1,6 @@
 import { memo } from 'react';
 
 import Header from '~/components/assets/Header';
-import theme from '~/theme/theme';
 
 const BaseHeader = memo(() => {
   return (

@@ -14,6 +14,7 @@ export default NextAuth({
         username: { label: "ユーザー名", type: "text", placeholder: "ユーザー名" },
         password: {  label: "パスワード", type: "password" }
       },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       async authorize(credentials, req) {
         const username = credentials?.username
         const password = credentials?.password
