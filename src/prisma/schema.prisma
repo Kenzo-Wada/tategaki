@@ -48,7 +48,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Post          Post[]
-  Like          Like[]
+  Like          Favorite[]
 }
 
 model VerificationToken {
@@ -70,10 +70,10 @@ model Post {
   deleted_at DateTime?
   authorId   String
   author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  Like       Like[]
+  Like       Favorite[]
 }
 
-model Like {
+model Favorite {
   id        String    @id @default(cuid())
   postId    String
   userId    String

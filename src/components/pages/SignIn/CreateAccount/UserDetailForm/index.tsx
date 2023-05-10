@@ -1,10 +1,10 @@
 import { memo } from 'react';
 
 import FilledButton from '~/components/base/Button/FilledButton';
-import useDetailForm from '~/components/SignIn/CreateAccount/UserDetailForm/hooks/useUserDetailForm';
-import PasswordInput from '~/components/SignIn/CreateAccount/UserDetailForm/PasswordInput';
-import UserIdInput from '~/components/SignIn/CreateAccount/UserDetailForm/UserIdInput';
-import UserNameInput from '~/components/SignIn/CreateAccount/UserDetailForm/UserNameInput';
+import useDetailForm from '~/components/pages/SignIn/CreateAccount/UserDetailForm/hooks/useUserDetailForm';
+import PasswordInput from '~/components/pages/SignIn/CreateAccount/UserDetailForm/PasswordInput';
+import UserIdInput from '~/components/pages/SignIn/CreateAccount/UserDetailForm/UserIdInput';
+import UserNameInput from '~/components/pages/SignIn/CreateAccount/UserDetailForm/UserNameInput';
 import type { UseFormReturnType } from '~/lib/mantine/form';
 
 export interface InputProps {

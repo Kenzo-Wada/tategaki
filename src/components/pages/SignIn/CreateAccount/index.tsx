@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import UserDetailForm from '~/components/SignIn/CreateAccount/UserDetailForm';
+import UserDetailForm from '~/components/pages/SignIn/CreateAccount/UserDetailForm';
 
 const CreateAccountPageComponent = memo(() => {
   return <UserDetailForm />;

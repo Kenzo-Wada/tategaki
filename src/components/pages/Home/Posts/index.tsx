@@ -5,7 +5,7 @@ import ActionIcon from '~/components/assets/ActionIcon';
 import Group from '~/components/assets/Group';
 import Image from '~/components/assets/Image';
 import Stack from '~/components/assets/Stack';
-import Text from '~/components/assets/Text';
+import Tag from '~/components/base/Tag';
 import H3 from '~/components/base/Title/H3';
 import { IconBooks } from '~/components/icon/Books';
 
@@ -19,10 +19,10 @@ const Post = memo(() => {
           <IconBooks />
         </ActionIcon>
       </Group>
-
-      <Text c={'dimmed'} fz={'sm'}>
-        記事の詳細を紹介
-      </Text>
+      <Group>
+        <Tag>hoge</Tag>
+        <Tag>fuga</Tag>
+      </Group>
     </Stack>
   );
 });

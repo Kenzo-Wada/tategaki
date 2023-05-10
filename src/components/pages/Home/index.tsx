@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import Post from '~/components/Home/Posts';
+import Post from '~/components/pages/Home/Posts';
 
 const HomePage = memo(() => {
   return <Post />;
