@@ -1,6 +1,5 @@
+import type { Post } from '@prisma/client';
 import { useEffect, useState } from 'react';
-
-import type { Post } from '~/lib/prisma';
 
 interface HooksType {
   posts: Post[];
