@@ -5,9 +5,9 @@ import globalStyles from '~/theme/globalStyles';
 const theme: MantineThemeOverride = {
   colorScheme: 'light',
   colors: {
-    primary: ['#E2FAF1', '#C6F5E3', '#AAEFD5', '#8EEAC7', '#72E5B9', '#56E0AB', '#1FAD8F', '#1A8B72', '#156955', '#114738'],
+    primary: ['#DFFAEB', '#BFF4D7', '#9FEFC3', '#80EAAF', '#60E49B', '#40DF87', '#1EAE98', '#1A8B72', '#16684C', '#124526'],
   },
-  primaryColor: 'primary',
+  primaryColor: 'cyan',
   globalStyles: () => globalStyles,
 };
 

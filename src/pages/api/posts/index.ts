@@ -7,6 +7,9 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {
       const posts = await prisma.post.findMany({
+        where: {
+          published: true,
+        },
         include: {
           author: true,
         },
