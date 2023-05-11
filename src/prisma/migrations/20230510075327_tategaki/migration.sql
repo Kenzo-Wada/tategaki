@@ -49,7 +49,7 @@ CREATE TABLE "VerificationToken" (
 -- CreateTable
 CREATE TABLE "Post" (
     "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
+    "title" TEXT,
     "content" TEXT,
     "image" TEXT,
     "published" BOOLEAN NOT NULL DEFAULT false,

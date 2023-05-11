@@ -27,6 +27,8 @@
     "@tabler/icons": "^2.17.0",
     "@tabler/icons-react": "^2.17.0",
     "@tiptap/extension-link": "^2.0.3",
+    "@tiptap/extension-text-align": "^2.0.3",
+    "@tiptap/extension-underline": "^2.0.3",
     "@tiptap/react": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
     "@types/node": "20.1.0",

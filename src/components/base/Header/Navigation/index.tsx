@@ -8,8 +8,8 @@ const Navigation = memo(() => {
   return (
     <Group>
       <LightButton>ホーム</LightButton>
-      <SubtleButton>本棚</SubtleButton>
-      <SubtleButton>記事</SubtleButton>
+      <SubtleButton color="gray">本棚</SubtleButton>
+      <SubtleButton color="gray">記事</SubtleButton>
     </Group>
   );
 });
