@@ -8,7 +8,7 @@ import { IconPencil } from '~/components/icon/Pencil';
 import useSessionUser from '~/hooks/useSessionUser';
 
 const User = memo(() => {
-  const { userImage, session } = useSessionUser();
+  const { userImage } = useSessionUser();
 
   return (
     <Group>

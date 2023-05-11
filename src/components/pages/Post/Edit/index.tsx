@@ -1,5 +1,4 @@
 import { rem } from '@mantine/core';
-import { useRouter } from 'next/router';
 import { memo, useState } from 'react';
 
 import Group from '~/components/assets/Group';
@@ -19,8 +18,6 @@ import LightButton from '~/components/base/Button/LightButton';
 import { StarterKit, useEditor } from '~/lib/tiptap';
 
 const PostEditPage = memo(() => {
-  const router = useRouter();
-  const { id } = router.query;
   const [value, setValue] = useState<string | null>('');
 
   const editor = useEditor({
@@ -46,7 +43,6 @@ const PostEditPage = memo(() => {
           <RichTextEditorControlsGroup>
             <RichTextEditorBold />
             <RichTextEditorItalic />
-            {/* <RichTextEditorUnderline /> */}
             <RichTextEditorStrikethrough />
           </RichTextEditorControlsGroup>
         </RichTextEditorToolbar>
