@@ -3,6 +3,7 @@ import { memo, useState } from 'react';
 
 import Group from '~/components/assets/Group';
 import Image from '~/components/assets/Image';
+import MultiSelect from '~/components/assets/MultiSelect';
 import RichTextEditor from '~/components/assets/RichTextEditor';
 import RichTextEditorBold from '~/components/assets/RichTextEditor/Bold';
 import RichTextEditorContent from '~/components/assets/RichTextEditor/Content';
@@ -25,6 +26,11 @@ const PostEditPage = memo(() => {
     content: value,
   });
 
+  const [tag, setTag] = useState([
+    { value: '1', label: '小説' },
+    { value: '2', label: '短編' },
+  ]);
+
   return (
     <Stack>
       <Group position="apart">
@@ -38,6 +44,18 @@ const PostEditPage = memo(() => {
         </Group>
       </Group>
       <Image radius={'md'} src="https://picsum.photos/1800/200" alt="image" />
+      <MultiSelect
+        data={tag}
+        placeholder="タグを追加"
+        searchable
+        creatable
+        getCreateLabel={(query) => `+ 新規作成: ${query}`}
+        onCreate={(query) => {
+          const item = { value: query, label: query };
+          setTag((current) => [...current, item]);
+          return item;
+        }}
+      />
       <RichTextEditor editor={editor} onInput={() => setValue(editor?.getHTML() || '')}>
         <RichTextEditorToolbar>
           <RichTextEditorControlsGroup>
