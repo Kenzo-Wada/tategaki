@@ -8,7 +8,7 @@ interface HooksType {
 
 const useAuth = (): HooksType => {
   const signIn = useCallback(() => {
-    NextAuthSignIn();
+    NextAuthSignIn('google');
   }, []);
 
   const signOut = useCallback(() => {

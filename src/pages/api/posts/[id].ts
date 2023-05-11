@@ -21,10 +21,15 @@ const getPostById = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       });
 
+      const postWithTags = {
+        ...post,
+        tags: post?.tags.map((postTag) => postTag.tag),
+      };
+
       if (!post) {
         res.status(404).json({ error: 'Post not found' });
       } else {
-        res.status(200).json(post);
+        res.status(200).json(postWithTags);
       }
     } catch (error) {
       res.status(500).json({ error: 'Error fetching the post', details: error });
