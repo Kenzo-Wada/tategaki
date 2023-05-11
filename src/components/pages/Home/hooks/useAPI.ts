@@ -1,8 +1,17 @@
-import type { Post } from '@prisma/client';
 import { useEffect, useState } from 'react';
 
 interface HooksType {
-  posts: Post[];
+  posts: {
+    id: string;
+    title: string | null;
+    content: string | null;
+    image: string | null;
+    published: boolean;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: Date | null;
+    authorId: string;
+  }[];
 }
 
 const useAPI = (): HooksType => {
