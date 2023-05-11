@@ -9,9 +9,16 @@ import RichTextEditorStrikethrough from '~/components/assets/RichTextEditor/Stri
 import RichTextEditorToolbar from '~/components/assets/RichTextEditor/Toolbar';
 import { StarterKit, useEditor } from '~/lib/tiptap';
 
-const MarkdownEditor = memo(() => {
+type Props = {
+  content: string | null;
+};
+
+const MarkdownEditor = memo((props: Props) => {
+  const { content } = props;
+
   const editor = useEditor({
     extensions: [StarterKit],
+    content,
   });
 
   return (

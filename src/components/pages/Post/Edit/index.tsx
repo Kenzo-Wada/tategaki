@@ -33,7 +33,7 @@ const PostEditPage = memo(() => {
       </Group>
       <Image radius={'md'} src="https://picsum.photos/1800/200" alt="image" />
       <TagSelector />
-      <MarkdownEditor />
+      <MarkdownEditor content={post?.content || null} />
     </Stack>
   );
 });
