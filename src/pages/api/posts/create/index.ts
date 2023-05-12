@@ -9,7 +9,7 @@ const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
 
     // Validation
     if (!authorId) {
-      return res.status(400).json({ error: 'Author ID are required' });
+      return res.status(400).json({ error: 'Author ID is required' });
     }
 
     try {
@@ -25,9 +25,37 @@ const createPost = async (req: NextApiRequest, res: NextApiResponse) => {
             },
           },
         },
+        select: {
+          id: true,
+          title: true,
+          content: true,
+          image: true,
+          published: true,
+          authorId: true,
+          created_at: true,
+          updated_at: true,
+          like: {
+            select: {
+              id: true,
+            },
+          },
+          _count: {
+            select: {
+              like: true,
+            },
+          },
+        },
       });
 
-      res.status(201).json(newPost);
+      const responsePost = {
+        ...newPost,
+        likedCount: newPost._count.like,
+      };
+
+      // // Remove the _count field from the response
+      // delete responsePost._count;
+
+      res.status(201).json(responsePost);
     } catch (error) {
       res.status(500).json({ error: 'Error creating the post', details: error });
     }
