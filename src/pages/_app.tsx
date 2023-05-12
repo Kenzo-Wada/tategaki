@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
-import { Suspense } from 'react';
 
 import Provider from '~/components/assets/Provider';
 import BaseAppShell from '~/components/base/AppShell';
@@ -10,11 +9,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   return (
     <SessionProvider session={session}>
       <Provider withGlobalStyles withNormalizeCSS theme={theme}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <BaseAppShell>
-            <Component {...pageProps} />
-          </BaseAppShell>
-        </Suspense>
+        <BaseAppShell>
+          <Component {...pageProps} />
+        </BaseAppShell>
       </Provider>
     </SessionProvider>
   );

@@ -89,6 +89,8 @@ CREATE TABLE "PostTag" (
     "id" TEXT NOT NULL,
     "postId" TEXT NOT NULL,
     "tagId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "PostTag_pkey" PRIMARY KEY ("id")
 );

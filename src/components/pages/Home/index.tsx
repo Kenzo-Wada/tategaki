@@ -1,9 +1,9 @@
 import { memo } from 'react';
 
-import Post from '~/components/pages/Home/Posts';
+import Posts from '~/components/pages/Home/Posts';
 
 const HomePage = memo(() => {
-  return <Post />;
+  return <Posts />;
 });
 
 HomePage.displayName = 'HomePage';

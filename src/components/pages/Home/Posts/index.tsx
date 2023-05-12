@@ -12,7 +12,7 @@ import H3 from '~/components/base/Title/H3';
 import { IconBooks } from '~/components/icon/Books';
 import useAPI from '~/components/pages/Home/hooks/useAPI';
 
-const Post = memo(() => {
+const Posts = memo(() => {
   const { posts } = useAPI();
   console.log(posts);
 
@@ -46,8 +46,7 @@ const Post = memo(() => {
               </ActionIcon>
             </Group>
             <Group>
-              <Tag color="gray">小説</Tag>
-              <Tag color="gray">短編</Tag>
+              <Tag color="gray">小説, 短編</Tag>
             </Group>
           </Stack>
         ))
@@ -58,6 +57,6 @@ const Post = memo(() => {
   );
 });
 
-Post.displayName = 'Post';
+Posts.displayName = 'Posts';
 
-export default Post;
+export default Posts;

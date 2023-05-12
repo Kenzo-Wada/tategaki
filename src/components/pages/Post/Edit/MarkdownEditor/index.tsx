@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 
 import RichTextEditor from '~/components/assets/RichTextEditor';
 import RichTextEditorBold from '~/components/assets/RichTextEditor/Bold';
@@ -11,18 +11,25 @@ import { StarterKit, useEditor } from '~/lib/tiptap';
 
 type Props = {
   content: string | null;
+  setContent: (content: string) => void;
 };
 
 const MarkdownEditor = memo((props: Props) => {
-  const { content } = props;
+  const { content, setContent } = props;
 
   const editor = useEditor({
     extensions: [StarterKit],
     content,
   });
 
+  useEffect(() => {
+    if (editor && content !== null) {
+      editor.chain().setContent(content).run();
+    }
+  }, [content, editor]);
+
   return (
-    <RichTextEditor editor={editor} onInput={() => console.log(editor?.getHTML() || '')}>
+    <RichTextEditor editor={editor} onInput={() => setContent(editor?.getHTML() || '')}>
       <RichTextEditorToolbar>
         <RichTextEditorControlsGroup>
           <RichTextEditorBold />

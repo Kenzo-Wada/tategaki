@@ -3,13 +3,13 @@ import { useCallback, useState } from 'react';
 import type { Tag } from '~/lib/prisma';
 
 interface HooksType {
-  callAPI: (name: string) => Promise<{ tag: Tag | null }>;
+  callPostAPI: (name: string) => Promise<{ tag: Tag | null }>;
 }
 
-const useAPI = (): HooksType => {
+const usePostAPI = (): HooksType => {
   const [tag, setTag] = useState<Tag | null>(null);
 
-  const callAPI = useCallback(
+  const callPostAPI = useCallback(
     async (name: string) => {
       try {
         const response = await fetch(`/api/tags/create`, {
@@ -38,8 +38,8 @@ const useAPI = (): HooksType => {
   );
 
   return {
-    callAPI,
+    callPostAPI,
   };
 };
 
-export default useAPI;
+export default usePostAPI;

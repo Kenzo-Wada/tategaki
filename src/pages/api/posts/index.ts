@@ -12,6 +12,17 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         include: {
           author: true,
+          like: true,
+          tags: {
+            select: {
+              tag: {
+                select: {
+                  id: true,
+                  name: true,
+                },
+              },
+            },
+          },
         },
         orderBy: { created_at: 'desc' },
       });
