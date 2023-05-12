@@ -65,7 +65,11 @@ const PostEditPage = memo(() => {
           <FilledButton onClick={() => handleRelease()}>公開</FilledButton>
         </Group>
       </Group>
-      <Image radius={'md'} src="https://picsum.photos/1800/200" alt="image" />
+      <Image
+        radius={'md'}
+        src="https://fastly.picsum.photos/id/637/1800/200.jpg?hmac=H5goMV9PhgTu7z7DDMDPJoCKN9vgPPw1KnF-1pvbIr0"
+        alt="image"
+      />
       <TagSelector />
       <MarkdownEditor content={post?.content || null} setContent={setContent} />
     </Stack>
