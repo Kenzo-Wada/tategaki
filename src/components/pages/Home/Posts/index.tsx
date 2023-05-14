@@ -29,8 +29,8 @@ const Posts = memo(() => {
 
   return (
     <Group spacing={'xl'}>
+      <H2>新着記事</H2>
       <Stack>
-        <H2>新着記事</H2>
         {posts ? (
           posts.map((post) => (
             <Stack w={rem(200)} spacing={'xs'} key={post.id}>
