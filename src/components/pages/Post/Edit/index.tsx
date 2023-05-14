@@ -4,6 +4,7 @@ import { memo, useEffect, useState } from 'react';
 
 import Group from '~/components/assets/Group';
 import Image from '~/components/assets/Image';
+import Skeleton from '~/components/assets/Skeleton';
 import Stack from '~/components/assets/Stack';
 import TextInput from '~/components/assets/TextInput';
 import DefaultBadge from '~/components/base/Badge/DefaultBadge';
@@ -46,32 +47,42 @@ const PostEditPage = memo(() => {
     });
   };
 
+  console.log('p:', post);
+
   return (
     <Stack>
-      <Group position="apart">
-        <Group>
-          {published ? <DefaultBadge variant={'filled'}>公開</DefaultBadge> : <DefaultBadge>下書き</DefaultBadge>}
-          <TextInput
-            variant="unstyled"
-            size="xl"
-            miw={rem(1000)}
-            placeholder="タイトル"
-            defaultValue={post?.title || ''}
-            onInput={(v) => setTitle(v.currentTarget.value)}
-          />
+      <Skeleton visible={!post}>
+        <Group position="apart">
+          <Group>
+            {published ? <DefaultBadge variant={'filled'}>公開</DefaultBadge> : <DefaultBadge>下書き</DefaultBadge>}
+            <TextInput
+              variant="unstyled"
+              size="xl"
+              miw={rem(1000)}
+              placeholder="タイトル"
+              defaultValue={post?.title || ''}
+              onInput={(v) => setTitle(v.currentTarget.value)}
+            />
+          </Group>
+          <Group>
+            <LightButton onClick={() => handleSave()}>保存</LightButton>
+            <FilledButton onClick={() => handleRelease()}>公開</FilledButton>
+          </Group>
         </Group>
-        <Group>
-          <LightButton onClick={() => handleSave()}>保存</LightButton>
-          <FilledButton onClick={() => handleRelease()}>公開</FilledButton>
-        </Group>
-      </Group>
-      <Image
-        radius={'md'}
-        src="https://fastly.picsum.photos/id/637/1800/200.jpg?hmac=H5goMV9PhgTu7z7DDMDPJoCKN9vgPPw1KnF-1pvbIr0"
-        alt="image"
-      />
-      <TagSelector />
-      <MarkdownEditor content={post?.content || null} setContent={setContent} />
+      </Skeleton>
+      <Skeleton visible={!post}>
+        <Image
+          radius={'md'}
+          src="https://fastly.picsum.photos/id/637/1800/200.jpg?hmac=H5goMV9PhgTu7z7DDMDPJoCKN9vgPPw1KnF-1pvbIr0"
+          alt="image"
+        />
+      </Skeleton>
+      <Skeleton visible={!post}>
+        <TagSelector />
+      </Skeleton>
+      <Skeleton visible={!post}>
+        <MarkdownEditor content={post?.content || null} setContent={setContent} />
+      </Skeleton>
     </Stack>
   );
 });

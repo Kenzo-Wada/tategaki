@@ -5,6 +5,7 @@ import { memo, useEffect, useState } from 'react';
 import ActionIcon from '~/components/assets/ActionIcon';
 import Group from '~/components/assets/Group';
 import Image from '~/components/assets/Image';
+import Skeleton from '~/components/assets/Skeleton';
 import Stack from '~/components/assets/Stack';
 import Text from '~/components/assets/Text';
 import FilledButton from '~/components/base/Button/FilledButton';
@@ -33,29 +34,37 @@ const PostPage = memo(() => {
 
   return (
     <Stack>
-      <Group position="apart">
-        <Group spacing={'xl'}>
-          <Group spacing={'xs'}>
-            <ActionIcon>
-              <IconBooks />
-            </ActionIcon>
-            <Text color="dimmed">12</Text>
+      <Skeleton visible={!post}>
+        <Group position="apart">
+          <Group spacing={'xl'}>
+            <Group spacing={'xs'}>
+              <ActionIcon>
+                <IconBooks />
+              </ActionIcon>
+              <Text color="dimmed">12</Text>
+            </Group>
+            <H2>{title}</H2>
           </Group>
-          <H2>{title}</H2>
+          {userId === post?.authorId && (
+            <Link href={`/post/${id}/edit`}>
+              <FilledButton leftIcon={<IconPencil />}> 編集</FilledButton>
+            </Link>
+          )}
         </Group>
-        {userId === post?.authorId && (
-          <Link href={`/post/${id}/edit`}>
-            <FilledButton leftIcon={<IconPencil />}> 編集</FilledButton>
-          </Link>
-        )}
-      </Group>
-      <Image
-        radius={'md'}
-        src="https://fastly.picsum.photos/id/637/1800/200.jpg?hmac=H5goMV9PhgTu7z7DDMDPJoCKN9vgPPw1KnF-1pvbIr0"
-        alt="image"
-      />
-      <TagSelector />
-      <Markdown content={post?.content || null} />
+      </Skeleton>
+      <Skeleton visible={!post}>
+        <Image
+          radius={'md'}
+          src="https://fastly.picsum.photos/id/637/1800/200.jpg?hmac=H5goMV9PhgTu7z7DDMDPJoCKN9vgPPw1KnF-1pvbIr0"
+          alt="image"
+        />
+      </Skeleton>
+      <Skeleton visible={!post}>
+        <TagSelector />
+      </Skeleton>
+      <Skeleton visible={!post}>
+        <Markdown content={post?.content || null} />
+      </Skeleton>
     </Stack>
   );
 });
