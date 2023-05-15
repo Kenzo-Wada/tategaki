@@ -1,10 +1,8 @@
 import { memo } from 'react';
 
 import FilledButton from '~/components/base/Button/FilledButton';
-import useDetailForm from '~/components/pages/SignIn/CreateAccount/UserDetailForm/hooks/useUserDetailForm';
-import PasswordInput from '~/components/pages/SignIn/CreateAccount/UserDetailForm/PasswordInput';
-import UserIdInput from '~/components/pages/SignIn/CreateAccount/UserDetailForm/UserIdInput';
-import UserNameInput from '~/components/pages/SignIn/CreateAccount/UserDetailForm/UserNameInput';
+import useDetailForm from '~/components/pages/Profile/UserDetailForm/hooks/useUserDetailForm';
+import UserNameInput from '~/components/pages/Profile/UserDetailForm/UserNameInput';
 import type { UseFormReturnType } from '~/lib/mantine/form';
 
 export interface InputProps {
@@ -20,8 +18,6 @@ const UserDetailForm = memo(() => {
   return (
     <form onSubmit={form.onSubmit((values) => console.log(values))}>
       <UserNameInput form={form} />
-      <UserIdInput form={form} />
-      <PasswordInput form={form} />
       <FilledButton type="submit">登録</FilledButton>
     </form>
   );

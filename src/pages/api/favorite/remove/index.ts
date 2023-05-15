@@ -2,21 +2,20 @@
 import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import useSessionUser from '~/hooks/useSessionUser';
+// import useSessionUser from '~/hooks/useSessionUser';
 
 const prisma = new PrismaClient();
 
 const removeFavorite = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'DELETE') {
-    // Get the user session
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { session, userId } = await useSessionUser();
+    // const { session, userId } = await useSessionUser();
 
-    if (!session) {
-      return res.status(401).json({ message: 'Not authenticated' });
-    }
+    // if (!session) {
+    //   return res.status(401).json({ message: 'Not authenticated' });
+    // }
 
-    const { postId } = req.body;
+    const { postId, userId } = req.body;
 
     // Validation
     if (!postId) {

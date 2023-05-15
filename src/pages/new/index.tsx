@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
+import PostEditPage from '~/components/pages/Post/Edit';
 import useSessionUser from '~/hooks/useSessionUser';
 
 const NewPost = () => {
@@ -25,7 +26,7 @@ const NewPost = () => {
     }
   }, [router, userId]);
 
-  return <div>Redirecting...</div>;
+  return <PostEditPage />;
 };
 
 export default NewPost;

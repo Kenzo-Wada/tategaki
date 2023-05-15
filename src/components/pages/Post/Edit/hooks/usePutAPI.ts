@@ -1,3 +1,4 @@
+import { notifications } from '@mantine/notifications';
 import { useCallback, useState } from 'react';
 
 import type { Post } from '~/lib/prisma';
@@ -48,6 +49,7 @@ const usePutAPI = (): HooksType => {
 
         if (response.ok) {
           const post = await response.json();
+          await notifications.show({ message: '記事を更新しました。' });
           setUpdatedPost(post);
         } else {
           throw new Error('Failed to update the post');
