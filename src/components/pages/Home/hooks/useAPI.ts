@@ -1,6 +1,6 @@
-import { use, useEffect, useState } from 'react';
+import { getSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
-import useSessionUser from '~/hooks/useSessionUser';
 import type { Post, User } from '~/lib/prisma';
 
 export type PostType = Post & {
@@ -17,30 +17,23 @@ interface HooksType {
 const useAPI = (): HooksType => {
   const [posts, setPosts] = useState<PostType[]>([]);
   const [loading, setLoading] = useState(true);
-  const { userId } = useSessionUser();
-  const [currentId, setCurrentId] = useState<string | null>(userId);
-
-  useEffect(() => {
-    if (userId !== null) {
-      setCurrentId(userId);
-    }
-  }, [userId]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`/api/posts?userId=${currentId}`);
+        const session = await getSession();
+        const res = await fetch(`/api/posts?userId=${session?.user.id}`);
         const data: PostType[] = await res.json(); // Ensure the response data is of type PostType[]
         setPosts(data);
         setLoading(false);
-        console.log(currentId);
+        console.log(session?.user.id);
       } catch (err) {
         setLoading(false);
       }
     };
 
     fetchPosts();
-  }, [currentId]);
+  }, []);
 
   return {
     posts,
