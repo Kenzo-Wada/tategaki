@@ -11,7 +11,6 @@ const useFavoriteAPI = () => {
     });
 
     if (!response.ok) {
-      console.log(userId);
       throw new Error('Failed to add like');
     }
   }, []);

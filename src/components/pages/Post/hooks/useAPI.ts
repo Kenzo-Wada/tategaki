@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import type { Post, PostTag, Tag, User } from '~/lib/prisma';
+import type { Post, User } from '~/lib/prisma';
 
 type PostType = Post & {
   author: User;
-  tags: PostTag[] & {
-    tags: Tag[];
-  };
+  tags: string[];
 };
 
 interface HooksType {

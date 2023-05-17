@@ -7,6 +7,12 @@ export type PostType = Post & {
   author: User;
   likesCount: number;
   currentUserLikes: boolean;
+  tags: {
+    tag: {
+      id: string;
+      name: string;
+    };
+  }[];
 };
 
 interface HooksType {
@@ -26,7 +32,6 @@ const useAPI = (): HooksType => {
         const data: PostType[] = await res.json(); // Ensure the response data is of type PostType[]
         setPosts(data);
         setLoading(false);
-        console.log(session?.user.id);
       } catch (err) {
         setLoading(false);
       }

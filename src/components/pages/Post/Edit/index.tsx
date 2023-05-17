@@ -25,17 +25,20 @@ const PostEditPage = memo(() => {
   const [title, setTitle] = useState(post?.title || '');
   const [content, setContent] = useState(post?.content || '');
   const [published, setPublished] = useState(post?.published);
+  const [tags, setTags] = useState(post?.tags);
 
   useEffect(() => {
     setTitle(post?.title || '');
     setContent(post?.content || '');
     setPublished(post?.published);
+    setTags(post?.tags || []);
   }, [post]);
 
   const handleSave = async () => {
     await callAPI(id as string, {
       title,
       content,
+      tags,
     });
   };
 
@@ -44,10 +47,11 @@ const PostEditPage = memo(() => {
       title,
       content,
       published: true,
+      tags,
     });
   };
 
-  console.log('p:', post);
+  console.log('p', post?.tags);
 
   return (
     <Stack>
@@ -78,10 +82,10 @@ const PostEditPage = memo(() => {
         />
       </Skeleton>
       <Skeleton visible={!post}>
-        <TagSelector />
-      </Skeleton>
-      <Skeleton visible={!post}>
-        <MarkdownEditor content={post?.content || null} setContent={setContent} />
+        <Stack>
+          {post?.tags && <TagSelector setTags={setTags} tags={tags} />}
+          <MarkdownEditor content={post?.content || null} setContent={setContent} />
+        </Stack>
       </Skeleton>
     </Stack>
   );

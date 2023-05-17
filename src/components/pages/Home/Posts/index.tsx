@@ -10,10 +10,10 @@ import Skeleton from '~/components/assets/Skeleton';
 import Stack from '~/components/assets/Stack';
 import Text from '~/components/assets/Text';
 import UnstyledButton from '~/components/assets/UnstyledButton';
-import Tag from '~/components/base/Badge/Tag';
 import H2 from '~/components/base/Title/H2';
 import H3 from '~/components/base/Title/H3';
 import { IconBooks } from '~/components/icon/Books';
+import { IconTags } from '~/components/icon/Tags';
 import type { PostType } from '~/components/pages/Home/hooks/useAPI';
 import useAPI from '~/components/pages/Home/hooks/useAPI';
 import useFavoriteAPI from '~/components/pages/Home/hooks/useFavoriteAPI';
@@ -78,8 +78,13 @@ const Post = (props: Props) => {
           </Text>
         </Group>
       </Group>
-      <Group>
-        <Tag color="gray">小説, 短編</Tag>
+      <Group spacing={'xs'}>
+        <IconTags color="gray" size={rem(18)} />
+        {post.tags.map((tag) => (
+          <Text size={rem(14)} color="dimmed" key={tag.tag.id}>
+            {tag.tag.name}
+          </Text>
+        ))}
       </Group>
     </Stack>
   );

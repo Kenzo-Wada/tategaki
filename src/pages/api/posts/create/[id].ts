@@ -30,11 +30,11 @@ const updatePostById = async (req: NextApiRequest, res: NextApiResponse) => {
         });
 
         // Add new post tags
-        const newTags = tags.map((tag) =>
+        const newTags = tags.map((tagId) =>
           prisma.postTag.create({
             data: {
               postId: post.id,
-              tagId: tag.id,
+              tagId,
             },
           })
         );

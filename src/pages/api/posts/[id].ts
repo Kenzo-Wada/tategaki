@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
 
 const prisma = new PrismaClient();
 
@@ -15,26 +16,26 @@ const getPostById = async (req: NextApiRequest, res: NextApiResponse) => {
           like: true,
           tags: {
             select: {
-              tag: {
-                select: {
-                  id: true,
-                  name: true,
-                },
-              },
+              tag: true,
             },
           },
         },
       });
 
-      const postWithTags = {
+      // Check if the user is logged in
+      const session = await getSession({ req });
+
+      const postWithExtraInfo = {
         ...post,
-        tags: post?.tags.map((postTag) => postTag.tag),
+        likesCount: post?.like.length, // count the number of likes
+        tags: post?.tags.map((postTag) => postTag.tag.id), // get the tags
+        currentUserLikes: session ? post?.like.some((like) => like.userId === session.user.id) : false, // check if the current user has liked the post
       };
 
       if (!post) {
         res.status(404).json({ error: 'Post not found' });
       } else {
-        res.status(200).json(postWithTags);
+        res.status(200).json(postWithExtraInfo);
       }
     } catch (error) {
       res.status(500).json({ error: 'Error fetching the post', details: error });

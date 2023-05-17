@@ -5,9 +5,15 @@ import { IconTags } from '~/components/icon/Tags';
 import useGetAPI from '~/components/pages/Post/Edit/TagSelect/hooks/useGetAPI';
 import usePostAPI from '~/components/pages/Post/Edit/TagSelect/hooks/usePostAPI';
 
-const TagSelector = memo(() => {
+interface Props {
+  setTags?: (tags: string[]) => void;
+  tags?: string[];
+  readOnly?: boolean;
+}
+
+const TagSelector = memo((props: Props) => {
+  const { tags, setTags, readOnly = false } = props;
   const [tag, setTag] = useState<{ value: string; label: string }[]>([]);
-  console.log(tag);
 
   const { callPostAPI } = usePostAPI();
   const { callAPI: fetchTags } = useGetAPI();
@@ -45,17 +51,26 @@ const TagSelector = memo(() => {
     }
   }, [newTagName, callPostAPI]);
 
+  console.log('tag', tag);
+  console.log('tags', tags);
+
   return (
-    <MultiSelect
-      data={tag}
-      defaultValue={['clhk3guoa0006op87tfzw6j2i', 'clhk31snw0000op879ba9tl2k']}
-      icon={<IconTags />}
-      placeholder="タグを追加"
-      searchable
-      creatable
-      getCreateLabel={(query) => `+ 新規作成: ${query}`}
-      onCreate={(query) => handleCreateTag(query)}
-    />
+    <>
+      {tag.length !== 0 && (
+        <MultiSelect
+          data={[{ value: '', label: '' }, ...tag]}
+          defaultValue={tags}
+          readOnly={readOnly}
+          icon={<IconTags />}
+          placeholder="タグを追加"
+          searchable
+          creatable
+          getCreateLabel={(query) => `+ 新規作成: ${query}`}
+          onCreate={(query) => handleCreateTag(query)}
+          onChange={(values) => setTags && setTags(values)}
+        />
+      )}
+    </>
   );
 });
 

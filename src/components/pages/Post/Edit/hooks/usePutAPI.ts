@@ -12,10 +12,7 @@ interface HooksType {
       image?: string;
       published?: boolean;
       authorId?: string;
-      tags?: {
-        id: string;
-        name?: string;
-      }[];
+      tags?: string[];
     }
   ) => Promise<{ updatedPost: Post | null }>;
 }
@@ -32,10 +29,7 @@ const usePutAPI = (): HooksType => {
         image?: string;
         published?: boolean;
         authorId?: string;
-        tags?: {
-          id: string;
-          name?: string;
-        }[];
+        tags?: string[];
       }
     ) => {
       try {

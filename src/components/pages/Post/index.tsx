@@ -26,8 +26,6 @@ const PostPage = memo(() => {
 
   const [title, setTitle] = useState(post?.title || '');
 
-  console.log('p:', post);
-
   useEffect(() => {
     setTitle(post?.title || '');
   }, [post]);
@@ -60,10 +58,10 @@ const PostPage = memo(() => {
         />
       </Skeleton>
       <Skeleton visible={!post}>
-        <TagSelector />
-      </Skeleton>
-      <Skeleton visible={!post}>
-        <Markdown content={post?.content || null} />
+        <Stack>
+          {post?.tags && <TagSelector tags={post?.tags} readOnly />}
+          <Markdown content={post?.content || null} />
+        </Stack>
       </Skeleton>
     </Stack>
   );
