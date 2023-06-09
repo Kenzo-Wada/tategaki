@@ -4,11 +4,20 @@ import prisma from '~/lib/prisma';
 
 const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
-    const { userId } = req.query;
+    const { currentUserId, userId } = req.query;
     try {
       const posts = await prisma.post.findMany({
         where: {
-          published: true,
+          OR: [
+            { published: true },
+            {
+              authorId: {
+                equals: String(currentUserId),
+                mode: 'insensitive',
+              },
+            },
+          ],
+          authorId: String(userId),
         },
         include: {
           author: true,
@@ -31,7 +40,7 @@ const getPosts = async (req: NextApiRequest, res: NextApiResponse) => {
         posts.map(async (post) => {
           const userLike = await prisma.favorite.findFirst({
             where: {
-              AND: [{ userId: String(userId) }, { postId: post.id }],
+              AND: [{ userId: String(currentUserId) }, { postId: post.id }],
             },
           });
           const likesCount = await prisma.favorite.count({

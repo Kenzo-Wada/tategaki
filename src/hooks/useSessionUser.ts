@@ -1,8 +1,10 @@
 import type { Session } from 'next-auth';
-import { useSession } from 'next-auth/react';
+import { useSession as useNextAuthSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
 interface HooksType {
   session: Session | null;
+  loading: boolean;
   userName: string | null;
   userEmail: string | null;
   userImage: string | null;
@@ -10,14 +12,24 @@ interface HooksType {
 }
 
 const useSessionUser = (): HooksType => {
-  const { data: session } = useSession();
+  const { data: session, status } = useNextAuthSession();
+  const loading = status === 'loading';
+
+  const [sessionData, setSessionData] = useState<Session | null>(null);
+
+  useEffect(() => {
+    if (!loading && session) {
+      setSessionData(session);
+    }
+  }, [session, loading]);
 
   return {
-    session,
-    userName: session?.user.name || null,
-    userEmail: session?.user.email || null,
-    userImage: session?.user.image || null,
-    userId: session?.user.id || null,
+    session: sessionData,
+    loading,
+    userName: sessionData?.user?.name || null,
+    userEmail: sessionData?.user?.email || null,
+    userImage: sessionData?.user?.image || null,
+    userId: sessionData?.user?.id || null,
   };
 };
 

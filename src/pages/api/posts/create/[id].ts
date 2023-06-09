@@ -1,8 +1,6 @@
-// pages/api/posts/[id].ts
-import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const prisma = new PrismaClient();
+import prisma from '~/lib/prisma';
 
 const updatePostById = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;

@@ -1,8 +1,6 @@
-// pages/api/user/[id].js
-import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const prisma = new PrismaClient();
+import prisma from '~/lib/prisma';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const userId = req.query.id;

@@ -1,10 +1,8 @@
-// pages/api/remove_favorite.js
-import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // import useSessionUser from '~/hooks/useSessionUser';
 
-const prisma = new PrismaClient();
+import prisma from '~/lib/prisma';
 
 const removeFavorite = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'DELETE') {

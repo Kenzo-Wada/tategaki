@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 
-const prisma = new PrismaClient();
+import prisma from '~/lib/prisma';
 
 const getPostById = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;

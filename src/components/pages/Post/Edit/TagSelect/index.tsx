@@ -51,9 +51,6 @@ const TagSelector = memo((props: Props) => {
     }
   }, [newTagName, callPostAPI]);
 
-  console.log('tag', tag);
-  console.log('tags', tags);
-
   return (
     <>
       {tag.length !== 0 && (

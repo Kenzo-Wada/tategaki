@@ -9,3 +9,15 @@ services:
     command: sh -c "npm run dev"
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: default
+      POSTGRES_PASSWORD: C2RvImzYw1ha
+    ports:
+      - "5432:5432"

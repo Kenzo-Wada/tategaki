@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const prisma = new PrismaClient();
+import prisma from '~/lib/prisma';
 
 const createTag = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
