@@ -102,6 +102,7 @@ const Posts = memo(() => {
       await addLike(postId, userId);
     }
   };
+  console.log(posts);
 
   return (
     <Stack>
