@@ -1,3 +1,6 @@
 .vercel
 
 /data
+
+/src/package-lock.json
+/src/yarn.lock
